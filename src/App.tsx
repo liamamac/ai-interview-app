@@ -7,17 +7,25 @@ import SummaryPage from './pages/SummaryPage';
 
 type Screen = 'landing' | 'interview' | 'summary';
 
+export type Answer = {
+  question: string;
+  answer: string;
+}
+
+export type InterviewSummary = {
+  completedAt: string;
+  answer: Answer[];
+}
+
 function App() {
   const [screen, setScreen] = useState<Screen>('landing');
-
-  // optional: later you can pass real data into SummaryPage
-  const [summaryData, setSummaryData] = useState<any>(null);
+  const [summaryData, setSummaryData] = useState<InterviewSummary | null>(null);
 
   const startInterview = () => {
     setScreen('interview');
   };
 
-  const endInterview = (summary: any) => {
+  const endInterview = (summary: InterviewSummary) => {
     setSummaryData(summary);
     setScreen('summary');
   };
